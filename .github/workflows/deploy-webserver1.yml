@@ -16,4 +16,4 @@ jobs:
       - name: Deploy Hello World server
         working-directory: ./webserver1
         run: |
-          docker-compose up -d --build
+          docker compose up -d --build
