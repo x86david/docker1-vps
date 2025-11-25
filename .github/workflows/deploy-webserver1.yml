@@ -1,0 +1,19 @@
+name: Deploy Webserver1
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # manual trigger
+
+jobs:
+  deploy:
+    runs-on: self-hosted   # your docker1 runner
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy Hello World server
+        working-directory: ./webserver1
+        run: |
+          docker-compose up -d --build
