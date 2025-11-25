@@ -5,6 +5,6 @@ services:
     image: php:8.2-apache
     container_name: php-hello-world
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - ./src:/var/www/html
