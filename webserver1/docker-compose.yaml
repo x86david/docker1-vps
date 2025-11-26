@@ -1,10 +1,15 @@
 version: "3.8"
 
 services:
-  php-server:
-    image: php:8.2-apache
-    container_name: php-hello-world
-    ports:
-      - "80:80"
+  angular-portfolio:
+    image: node:18
+    container_name: angular-portfolio
+    working_dir: /app
     volumes:
-      - ./src:/var/www/html
+      - ./src:/app
+    ports:
+      - "80:4200"
+    command: >
+      bash -c "npm install -g @angular/cli &&
+               npm install &&
+               ng serve --host 0.0.0.0 --port 4200"
