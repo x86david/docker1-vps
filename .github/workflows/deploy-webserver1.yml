@@ -23,5 +23,5 @@ jobs:
 
       - name: Build and deploy Angular app with Docker
         run: |
-          docker compose -f docker-compose.yaml down
+          docker compose -f docker-compose.yaml down --remove-orphans
           docker compose -f docker-compose.yaml up -d --build
