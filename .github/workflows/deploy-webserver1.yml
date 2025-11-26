@@ -1,19 +1,19 @@
-name: Deploy Webserver1
+name: Deploy Portfolio
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch: # manual trigger
+  workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: self-hosted   # your docker1 runner
+    runs-on: self-hosted   # your VPS runner
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Deploy Hello World server
-        working-directory: ./webserver1
+      - name: Build and deploy Angular app
         run: |
+          docker compose down
           docker compose up -d --build

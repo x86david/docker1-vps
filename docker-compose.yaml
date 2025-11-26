@@ -1,0 +1,7 @@
+services:
+  portfolio:
+    build: .
+    container_name: angular-portfolio
+    ports:
+      - "80:80"
+    restart: always
