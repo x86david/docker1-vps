@@ -14,9 +14,7 @@ RUN ng build --configuration production
 
 # Stage 2: Serve with Nginx
 FROM nginx:stable-alpine
-# Remove default config
 RUN rm /etc/nginx/conf.d/default.conf
-# Copy custom config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-# Copy built Angular app
-COPY --from=build /app/dist/portfolio /usr/share/nginx/html
+# Copy the actual Angular build output
+COPY --from=build /app/dist/portfolio/browser /usr/share/nginx/html
