@@ -24,4 +24,8 @@ jobs:
       - name: Build and deploy Angular app with Docker
         run: |
           docker compose -f docker-compose.yaml down --remove-orphans
-          docker compose -f docker-compose.yaml up -d --build
+          docker compose -f docker-compose.yaml up -d --build --force-recreate
+
+      - name: Cleanup old Docker images and containers
+        run: |
+          docker system prune -af || true
