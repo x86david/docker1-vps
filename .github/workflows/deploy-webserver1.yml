@@ -8,12 +8,20 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted   # your VPS runner
+    runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build and deploy Angular app
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Build and deploy Angular app with Docker
         run: |
-          docker compose down
-          docker compose up -d --build
+          docker compose -f docker-compose.yaml down
+          docker compose -f docker-compose.yaml up -d --build
